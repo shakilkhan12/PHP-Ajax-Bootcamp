@@ -35,10 +35,8 @@
 	
 
 	<script src="assets/js/jquery.min.js"></script>
-	<!-- <script src="assets/js/validations.js"></script> -->
-	<!-- <script src="assets/js/register.js"></script> -->
-	<script src="assets/js/valid.js"></script>
-	<script src="assets/js/reg.js"></script>
+	<script src="assets/js/validations.js"></script>
+	<script src="assets/js/register.js"></script>
 
 </body>
 </html>

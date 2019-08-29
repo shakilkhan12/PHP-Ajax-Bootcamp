@@ -4,7 +4,8 @@ const email          = document.getElementById("email");
 const password       = document.getElementById("password");
 const nameError      = document.querySelector(".nameError");
 const emailError     = document.querySelector(".emailError");
-let nameStatus       =  emailStatus = true;
+const passwordError  = document.querySelector(".passwordError");
+let nameStatus       =  emailStatus = passwordStatus = true;
 
 // Submit event listener
       form.addEventListener("submit", (e) => {
@@ -38,13 +39,14 @@ let nameStatus       =  emailStatus = true;
         emailStatus = false;
         if(validEmail(email, "Email", emailError)){
            emailStatus = false;
-           if(checkEmail(email, emailError, "users", "email")){
+           checkEmail(email, emailError, "users", "email").then((status) => {
               emailStatus = false;
-
-           } else {
+              Register();
+           }).catch((status) => {
               emailStatus = true;
-
-           }
+              console.log("Sorry this email is already exist");
+           })
+          
 
         } else {
            emailStatus = true;
@@ -53,8 +55,43 @@ let nameStatus       =  emailStatus = true;
       } else {
         emailStatus = true;
       }
+
+
+      // Password validations
+      if(Empty(password, "Password", passwordError)){
+         passwordStatus = false;
+         if(MinLen(password, "Password", passwordError, 5)){
+            passwordStatus = false;
+         } else {
+            passwordStatus = true;
+         }
+
+      } else {
+         passwordStatus = true;
+
+      }
        
 
-      console.log(nameStatus, emailStatus);
+      function Register(){
+         if(nameStatus === false && emailStatus === false && passwordStatus === false){
+           
+            // Submit register form
+            $.ajax({
+
+               type :  "POST",
+               url  :  "ajax/registeration.php",
+               data : $(form).serialize(),
+               success : (feedback) => {
+                  const convertedResponse = JSON.parse(feedback);
+                  if(convertedResponse.status === "success"){
+                     window.location = "login.php";
+                  }
+               }
+
+            })
+
+
+         }
+      }
 
       })

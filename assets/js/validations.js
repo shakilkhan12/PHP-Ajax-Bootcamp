@@ -70,26 +70,35 @@ function validEmail(input, label, errorClass){
 function checkEmail(input, errorClass, tableName, column){
 
    const fieldName = input.value.trim();
-   $.ajax({
 
-    type  :  "POST",
-    url   :  "ajax/checkEmail.php" ,
-    data  : { email:  fieldName, tableName: tableName, column: column},
-    success : (feedback) => {
-         
-        const convertFeedback = JSON.parse(feedback);
-        if(convertFeedback.status === "error"){
-            errorClass.innerHTML = convertFeedback.msg;
-            input.classList.add("borderRed");
-            return false;
-        } else {
-            errorClass.innerHTML = "";
-            input.classList.remove("borderRed");
-            return true;
-        }
-    }
+   return new Promise((resolve, reject) => {
 
-   })
+    $.ajax({
+
+      type  :  "POST",
+      url   :  "ajax/checkEmail.php" ,
+      data  : { email:  fieldName, tableName: tableName, column: column},
+      success : (feedback) => {
+           
+          const convertFeedback = JSON.parse(feedback);
+          if(convertFeedback.status === "error"){
+              errorClass.innerHTML = convertFeedback.msg;
+              input.classList.add("borderRed");
+              reject(false);
+              
+          } else {
+              errorClass.innerHTML = "";
+              input.classList.remove("borderRed");
+              resolve(true);
+              
+          }
+      }
+  
+     })
+
+   });
+
+
 
 }
 
