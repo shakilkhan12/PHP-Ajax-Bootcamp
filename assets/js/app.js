@@ -1,10 +1,18 @@
 const modelContainer = document.querySelector(".model-container");
-const btn            = document.querySelector("#showModel");
-      btn.addEventListener("click", () => {
+const btn            = document.querySelectorAll(".showModel");
 
-      modelContainer.style.display = 'flex';
+   btn.forEach((element) => {
 
-      });
+    element.addEventListener("click", (e) => {
+        
+        e.preventDefault();
+        modelContainer.style.display = 'flex';
+  
+        });
+
+   })
+
+      
 
       modelContainer.addEventListener("click", (e) => {
          

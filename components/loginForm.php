@@ -3,13 +3,17 @@
 					</div>
 					<!-- Close group -->
 		   <!-- <h3>Let's create your account</h3> -->
-		   <form action="" method="">
+		   <form id="loginForm">
 				<div class="group">
-					<input type="email" id="email" class="control" placeholder="Email...">
+					<input type="email" id="email" name="email" class="control" placeholder="Email...">
+					<div class="error emailError">
+
+					</div>
 				</div>
 				<!-- Close group -->
 				<div class="group">
-					<input type="password" id="password" class="control" placeholder="Enter Password...">
+					<input type="password" id="password" name="password" class="control" placeholder="Enter Password...">
+					<div class="error passwordError"></div>
 				</div>
 				<!-- Close group -->
 				

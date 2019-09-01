@@ -103,3 +103,17 @@ function checkEmail(input, errorClass, tableName, column){
 }
 
 
+function Nagitive(input, label, errorClass){
+
+  const field = input.value.trim();
+  if(field < 1){
+    errorClass.innerHTML = label + " must be greater than 0";
+    input.classList.add("borderRed");
+    return false;
+  } else {
+    errorClass.innerHTML = "";
+    input.classList.remove("borderRed");
+    return true;
+  }
+
+}

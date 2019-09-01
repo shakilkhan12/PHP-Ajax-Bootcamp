@@ -1,4 +1,10 @@
-<?php include "startSession.php"; ?>
+<?php 
+include "startSession.php";
+if(isset($_SESSION['userId'])){
+	header("location: dashboard.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +45,12 @@
 
 	</div>
 	<!-- Close account-split -->
-
-	<script src="assets/js/hideMessage.js"></script>
 	
+	<script src="assets/js/hideMessage.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/validations.js"></script>
+	<script src="assets/js/login.js"></script>
+
+
 </body>
 </html>
