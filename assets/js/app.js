@@ -6,13 +6,13 @@ const btn            = document.querySelectorAll(".showModel");
     element.addEventListener("click", (e) => {
         
         e.preventDefault();
+ 
         modelContainer.style.display = 'flex';
   
         });
 
    })
 
-      
 
       modelContainer.addEventListener("click", (e) => {
          
@@ -32,4 +32,9 @@ const btn            = document.querySelectorAll(".showModel");
         let label = document.getElementById("custom-label");
             label.innerText = imageName[index];
 
+      }
+
+      function get(){
+         const warning = document.querySelector(".btn-warning");
+               warning.style.display = "none";
       }

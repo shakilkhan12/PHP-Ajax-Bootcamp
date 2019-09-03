@@ -19,6 +19,7 @@
 				<div class="error priceError"></div>
 			</div>
 			<!-- Close group -->
+			<input type="hidden" id="bookStatus" value="addBook">
 			<div class="group">
 				<input type="submit"  id="" class="btn btn-sweet" value="Add book &#8250;">
 			</div>

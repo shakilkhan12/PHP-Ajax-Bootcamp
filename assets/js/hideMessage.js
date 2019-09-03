@@ -1,3 +1,4 @@
+function hidMessage(){
 const success = document.querySelector(".success");
 const loader  = document.querySelector(".loader-section");
 
@@ -16,3 +17,7 @@ setTimeout(() => {
     }
 
 }, 4000);
+
+}
+
+hidMessage();

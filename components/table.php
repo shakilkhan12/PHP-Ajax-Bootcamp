@@ -1,5 +1,7 @@
 <div class="table-section">
-	<table class="table">
+	<div class="message"></div>
+	<div id="table"></div>
+	<!-- <table class="table">
 		<thead>
 			<tr>
 				<th>Book Name</th>
@@ -32,7 +34,7 @@
 			    <td><a href="" class="btn btn-danger btn-small">Delete <span>&#10006;</span></a></td>
 			</tr>
 		</tbody>
-	</table>
+	</table> -->
 	<!-- Close table -->
 </div>
 <!-- Close table-section -->

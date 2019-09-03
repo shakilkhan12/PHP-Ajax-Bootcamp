@@ -103,7 +103,7 @@ function checkEmail(input, errorClass, tableName, column){
 }
 
 
-function Nagitive(input, label, errorClass){
+function Positive(input, label, errorClass){
 
   const field = input.value.trim();
   if(field < 1){

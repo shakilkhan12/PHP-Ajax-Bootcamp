@@ -51,8 +51,9 @@ endif;
 <!-- Close row -->
 </div>
 <!-- Close container  -->
-    <script src="assets/js/app.js"></script>
+    
     <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/app.js"></script>
 	<script src="assets/js/validations.js"></script>
 	<script src="assets/js/hideMessage.js"></script>
 	<script src="assets/js/book.js"></script>
