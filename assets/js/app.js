@@ -1,18 +1,19 @@
-const modelContainer = document.querySelector(".model-container");
-const btn            = document.querySelectorAll(".showModel");
+const addBookBtn = document.querySelector(".addBookBtn");
+      
+      addBookBtn.addEventListener("click", (e) => {
 
-   btn.forEach((element) => {
+         e.preventDefault();
+         modelBox();
 
-    element.addEventListener("click", (e) => {
-        
-        e.preventDefault();
+
+      })
  
+
+function modelBox(){
+
+const modelContainer = document.querySelector(".model-container");
+
         modelContainer.style.display = 'flex';
-  
-        });
-
-   })
-
 
       modelContainer.addEventListener("click", (e) => {
          
@@ -22,6 +23,8 @@ const btn            = document.querySelectorAll(".showModel");
          }
 
       })
+
+   }
 
        function imageName(){
         
@@ -34,7 +37,3 @@ const btn            = document.querySelectorAll(".showModel");
 
       }
 
-      function get(){
-         const warning = document.querySelector(".btn-warning");
-               warning.style.display = "none";
-      }

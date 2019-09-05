@@ -7,6 +7,10 @@ const autherError       = document.querySelector(".authorError");
 const priceError        = document.querySelector(".priceError");
 const bookStatus        = document.getElementById("bookStatus");
 const message           = document.querySelector(".message");
+let heading             = document.querySelector(".heading");
+let bookButton          = document.getElementById("bookButton");
+const modelContainer    = document.querySelector(".model-container");
+const bookId            = document.getElementById("bookId");
 let nameStatus = autherStatus = priceStatus = true;
 
 // Event listener for book 
@@ -71,12 +75,34 @@ let nameStatus = autherStatus = priceStatus = true;
                             <p> <strong>Success!</strong> ${convertedRes.msg} </p>
                         </div>`;
                         hidMessage();
-                        fetchBooks()
+                        fetchBooks();
                         }
 
                     }
 
                 })
+            } else if(bookStatus.value === "updateBook"){
+
+                $.ajax({
+                    type : 'POST',
+                    url  : 'ajax/updateBook.php',
+                    data : $(bookForm).serialize(),
+                    success : (response) => {
+                        const convertedRes = JSON.parse(response);
+                        if(convertedRes.status === "success"){
+                            modelContainer.style.display = "none";
+                            bookForm.reset();
+                            message.innerHTML = `<div class="alert success">
+                            <div class="alert-icon"><div class="alertIcon">&check;</div></div>
+                            <p> <strong>Success!</strong> ${convertedRes.msg} </p>
+                        </div>`;
+                        hidMessage();
+                        fetchBooks();
+                            
+                        }
+                    }
+                })
+
             }
         }
 
@@ -104,8 +130,8 @@ function fetchBooks(){
 				<td>${book.bookName}</td>
 				<td>${book.authorName}</td>
 				<td><div class="dollor">$ ${book.price}.00</div></td>
-			    <td><a href="" class="btn btn-warning btn-small showModel">Edit <span>&#9998;</span></a></td>
-			    <td><a href="" class="btn btn-danger btn-small">Delete <span>&#10006;</span></a></td>
+			    <td><a href="" class="btn btn-warning btn-small updateBookBtn" onclick="updateBook(${book.id}, '${book.bookName}', '${book.authorName}', ${book.price});">Edit <span>&#9998;</span></a></td>
+			    <td><a href="javascript:void(0);" class="btn btn-danger btn-small" onclick="deleteBook(${book.id});">Delete <span>&#10006;</span></a></td>
 			</tr>`;
 
                 })
@@ -122,8 +148,20 @@ function fetchBooks(){
                 <tbody>${result}</tbody></table>`;
 
             } else if(res.status === "noRecords"){
-                 table.innerHTML = `No Recods`;
+                 table.innerHTML = `<div style="font-size:1.4rem;border: 1px solid #000;padding: 1rem;border-radius: 3px;">No Records</div>`;
             }
+
+            const updateBookBtn = document.querySelectorAll(".updateBookBtn");
+                  updateBookBtn.forEach((btn) => {
+                   
+                    btn.addEventListener("click", (e) => {
+
+                        e.preventDefault();
+                        modelBox();
+
+                    })
+
+                  })
         }
 
     })
@@ -133,6 +171,59 @@ function fetchBooks(){
 
 fetchBooks();
 
+function updateBook(id, bookN, bookA, bookP){
+
+ bookName.value = bookN;
+ bookAuthor.value = bookA;
+ bookPrice.value = bookP;
+ heading.innerHTML = "Update Book";
+ bookButton.value = "update book \u276F";
+ bookName.classList.remove("borderRed");
+ bookAuthor.classList.remove("borderRed");
+ bookPrice.classList.remove("borderRed");
+ nameError.innerHTML = "";
+ autherError.innerHTML = "";
+ priceError.innerHTML = "";
+ bookStatus.value = "updateBook";
+ bookId.value     = id;
 
 
+}
 
+
+function addBookForm(){
+
+    bookName.value = "";
+    bookAuthor.value = "";
+    bookPrice.value = "";
+    heading.innerHTML = "Add Book";
+    bookButton.value = "add book \u276F";  
+    bookStatus.value = "addBook";
+
+}
+
+function deleteBook(id){
+
+    const confirmBox = confirm("Are you really want to delete this book ?");
+    if(confirmBox){
+        $.ajax({
+
+            type : 'POST',
+            url  : 'ajax/deleteBook.php',
+            data : {id},
+            success : (response) => {
+                const convertedRes = JSON.parse(response);
+                if(convertedRes.status === "success"){
+                    message.innerHTML = `<div class="alert success">
+                            <div class="alert-icon"><div class="alertIcon">&check;</div></div>
+                            <p> <strong>Success!</strong> ${convertedRes.msg} </p>
+                        </div>`;
+                        hidMessage();
+                        fetchBooks();
+                }
+            }
+
+        })
+    }
+
+}
