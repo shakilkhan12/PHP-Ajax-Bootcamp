@@ -11,6 +11,8 @@ let heading             = document.querySelector(".heading");
 let bookButton          = document.getElementById("bookButton");
 const modelContainer    = document.querySelector(".model-container");
 const bookId            = document.getElementById("bookId");
+const totalBooks        = document.querySelector(".totalBooks");
+const totalAmount       = document.querySelector(".totalAmount");
 let nameStatus = autherStatus = priceStatus = true;
 
 // Event listener for book 
@@ -76,6 +78,7 @@ let nameStatus = autherStatus = priceStatus = true;
                         </div>`;
                         hidMessage();
                         fetchBooks();
+                        booksInfo();
                         }
 
                     }
@@ -98,6 +101,7 @@ let nameStatus = autherStatus = priceStatus = true;
                         </div>`;
                         hidMessage();
                         fetchBooks();
+                        booksInfo();
                             
                         }
                     }
@@ -148,7 +152,7 @@ function fetchBooks(){
                 <tbody>${result}</tbody></table>`;
 
             } else if(res.status === "noRecords"){
-                 table.innerHTML = `<div style="font-size:1.4rem;border: 1px solid #000;padding: 1rem;border-radius: 3px;">No Records</div>`;
+                 table.innerHTML = `<div style="font-size:1.4rem;border: 1px solid silver;padding: 1rem;border-radius: 3px;color:silver">No Records</div>`;
             }
 
             const updateBookBtn = document.querySelectorAll(".updateBookBtn");
@@ -220,6 +224,7 @@ function deleteBook(id){
                         </div>`;
                         hidMessage();
                         fetchBooks();
+                        booksInfo();
                 }
             }
 
@@ -227,3 +232,31 @@ function deleteBook(id){
     }
 
 }
+
+
+function booksInfo(){
+
+
+    $.ajax({
+
+        type : 'GET',
+        url  : 'ajax/booksInfo.php',
+        success : (response) => {
+            
+            const res = JSON.parse(response);
+            if(res.status === "success"){
+                totalBooks.innerHTML = `Total Books<h2>${res.totalBooks}.00</h2>`;
+                totalAmount.innerHTML = `Total Amount <h2> $ ${res.totalAmount}.00</h2>`;
+
+            } else if(res.status === "noBooks"){
+                totalBooks.innerHTML = `Total Books<h2>0.00</h2>`;
+                totalAmount.innerHTML = `Total Amount <h2> $ 0.00</h2>`;
+            }
+
+        }
+
+    })
+
+}
+
+booksInfo();

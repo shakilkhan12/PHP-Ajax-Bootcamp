@@ -29,7 +29,6 @@ const modelContainer = document.querySelector(".model-container");
        function imageName(){
         
         let image = document.getElementById("imageInput").value;
-        console.log(image);
         let imageName = image.split("\\");
         let index = imageName.length - 1;
         let label = document.getElementById("custom-label");

@@ -1,11 +1,11 @@
 function hidMessage(){
-const success = document.querySelector(".success");
+const alert = document.querySelector(".alert");
 const loader  = document.querySelector(".loader-section");
 
 setTimeout(() => {
 
-    if(success !== null){
-    success.style.display = "none";
+    if(alert !== null){
+    alert.style.display = "none";
     }
 
 }, 6000);

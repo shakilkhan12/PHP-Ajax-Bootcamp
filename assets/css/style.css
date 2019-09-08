@@ -662,6 +662,9 @@ Custom Input Field Design
 	  margin-top: .7rem;
   }
 
+  .message {
+	  margin-bottom: 2rem;
+  }
 
 /* ==============
 CSS Media Query
@@ -677,6 +680,17 @@ CSS Media Query
 
 	#custom-label {
 		width: auto;
+	}
+	.row {
+		flex-direction: column;
+	}
+
+	.col-9 {
+		width: 100%;
+	}
+
+	.col-3 {
+		width: 100%;
 	}
 }
 
